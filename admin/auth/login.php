@@ -1,4 +1,13 @@
-<?php session_start();?>
+<?php
+
+    session_start();
+    ob_start();
+    if(isset($_GET['logout'])){
+        unset($_SESSION['admin']);
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +23,8 @@
     <title>Login</title>
 
     <!-- start css -->
-    <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../../assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/login.css">
     <!-- end css -->
 </head>
 
@@ -23,7 +32,7 @@
 
     <div class="form-container">
         <div class="login-logo">
-            <img src="../assets/img/logo.png" alt="logo">
+            <img src="../../assets/img/logo.png" alt="logo">
         </div>
         <label for="">Login</label>
         <form action="" method="post" enctype="multipart/form-data">
@@ -47,10 +56,10 @@
     </div>
 
     <!-- start js -->
-    <script src="../assets/vendor/jquery/jquery.js"></script>
-    <script src="../assets/vendor/fontawesome/js/all.min.js"></script>
-    <script src="../assets/vendor/sweetalert2/sweetalert2@11.js"></script>
-    <script src="../assets/js/login.js"></script>
+    <script src="../../assets/vendor/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/fontawesome/js/all.min.js"></script>
+    <script src="../../assets/vendor/sweetalert2/sweetalert2@11.js"></script>
+    <script src="../../assets/js/login.js"></script>
 
     <?php
         if(isset($_POST['login'])){
@@ -67,7 +76,7 @@
                 </script>";
             }else{
                 $_SESSION['admin'] = $username;
-                header('location: ../admin/');
+                header('location: ../../admin/');
             }
         }
     ?>

@@ -1,7 +1,0 @@
-RewriteEngine On
-
-RewriteRule "^admin/login" "admin/auth/login.php"
-RewriteRule "^admin/dashboard" "?route=admin&page=dashboard"
-
-# RewriteRule "^([a-zA-Z0-9]+).html$" "?quanly=$1"
-# RewriteRule "^danh-muc/[0-9].html$" "?index.php?quanly=loaisp&id=$1"

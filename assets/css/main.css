@@ -9,6 +9,7 @@
     direction: ltr;
     scroll-behavior: smooth;
     overflow-x: hidden;
+    user-select: none;
 }
 
 :root{
@@ -24,11 +25,20 @@
 
 }
 
+a, a:hover{
+    color: var(--text-color);
+}
+
+.light a, .light a:hover{
+    color: var(--text-color-light);
+}
+
 
 #wrapper{
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
 .switch-toggle{
     margin: 5px;
@@ -94,10 +104,11 @@ body.light>#body_container{
 
 #sidebar_container{
     position: fixed;
-    height: 100vh;
     width: 200px;
     padding: 2px;
     background: var(--bg-color-highlight);
+    height: 100vh;
+    overflow: hidden;
 }
 
 
@@ -111,6 +122,7 @@ body.light>#body_container>#sidebar_container{
     width: calc(100vw - 200px);
     padding: 2px;
     background: var(--bg-color);
+    
 }
 
 body.light>#body_container>#main_container{
@@ -131,14 +143,15 @@ body.light>#body_container>#main_container{
     text-align: start;
     font-size: 12px;
     font-weight: 400;
+    width: 100%;
 }
 
 .sidebar_bar{
-    text-align: end;
-    font-size: 24px;
-    vertical-align: middle;
     z-index: 1;
-    padding-left: 5px;
+}
+svg.svg-inline--fa.fa-bars{
+    font-size: 24px !important;
+    padding: 5px;
 }
 
 .sidebar_bar:hover,
@@ -147,8 +160,8 @@ body.light>#body_container>#main_container{
     background: var(--bg-color); 
     border-radius: 5px;
 }
-body.light>#body_container>#sidebar_container>.sidebar_top>.sidebar_bar:hover,
-body.light>#body_container>#sidebar_container>.sidebar_top>.sidebar_bar:focus{
+body.light>#body_container>#sidebar_container>.sidebar_top .sidebar_bar:hover,
+body.light>#body_container>#sidebar_container>.sidebar_top .sidebar_bar:focus{
     cursor: pointer;
     background: var(--bg-color-light); 
     border-radius: 5px;
@@ -160,21 +173,26 @@ body.light>#body_container>#sidebar_container>.sidebar_top>.sidebar_bar:focus{
 }
 
 .sidebar_logo>img{
-    width: 100%;
+    position: absolute;
+    width: 80%;
     z-index: 0;
+    top: 60px;
+    opacity: 0.8;
 }
 
 .sidebar_items{
-    height: calc(100vh - 300px);
+    margin-top: 70px;
     overflow: auto;
     width: 100%;
+    height: calc(100vh - 100px);
 }
 
 .sidebar_item{
-    margin: 2px 0px;
-    padding: 5px 2px 5px 10px;
+    margin: 5px 0px;
+    padding: 10px 2px 5px 10px;
     font-weight: 400;
-    font-size: 13px
+    font-size: 13px;
+
 }
 
 
@@ -182,10 +200,8 @@ body.light>#body_container>#sidebar_container>.sidebar_top>.sidebar_bar:focus{
 .sidebar_item:focus{
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-    padding: 5px 2px 5px 5px;
     transition: 0.02s all ease-in-out;
     background: var(--bg-color); 
-    border-left: 5px solid var(--text-color);
 }
 
 
@@ -193,18 +209,19 @@ body.light>#body_container>#sidebar_container>.sidebar_top>.sidebar_bar:focus{
 body.light>#body_container>#sidebar_container>.sidebar_items>.sidebar_item:hover,
 body.light>#body_container>#sidebar_container>.sidebar_items>.sidebar_item:focus{
     background: var(--bg-color-light); 
-    border-left: 5px solid var(--text-color-light);
 }
 
 
 
 .sidebar_item:hover>.sidebar_item_active,
 .sidebar_item:focus>.sidebar_item_active{
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 
+
+
 svg{
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .navbar_container{
@@ -217,6 +234,10 @@ body.light>#body_container>#main_container>.navbar_container{
     background: var(--bg-color-highlight-light);
 }
 
+.sidebar_item_active{
+    display: flex;
+    align-items: center;
+}
 
 .navbar_items{
     display: flex;
@@ -237,8 +258,55 @@ body.light>#body_container>#main_container>.navbar_container{
     border-radius: 5px;
     cursor: pointer;
     background: var(--bg-color);
+    
 }
 body.light>#body_container>#main_container>.navbar_container>.navbar_items>.navbar_item:hover,
 body.light>#body_container>#main_container>.navbar_container>.navbar_items>.navbar_item:focus{
     background: var(--bg-color-light);
+}
+
+body.hide>#body_container>#sidebar_container{
+    
+    width: 50px;
+}
+
+body.hide>#body_container>#sidebar_container .switch-toggle,
+body.hide>#body_container>#sidebar_container .sidebar_user,
+body.hide>#body_container>#sidebar_container .sidebar_timer,
+body.hide>#body_container>#sidebar_container .sidebar_logo
+{
+    display: none;
+}
+
+body.hide>#body_container>#sidebar_container .sidebar_items
+{
+    height: 100vh;
+    position: relative;
+    margin-top: 20px;
+}
+
+body.hide>#body_container>#sidebar_container .sidebar_item_active_text
+{
+    display: none;
+}
+
+body.hide>#body_container>#sidebar_container svg
+{
+    font-size: 18px;
+}
+
+body.hide>#body_container>#main_container
+{
+    width: calc(100vw - 50px);
+    left: 50px;
+    
+}
+body.hide>#body_container>#sidebar_container .sidebar_items .sidebar_item:hover:before {
+    content: attr(data);
+}
+
+body.hide>#body_container>#sidebar_container .sidebar_items .sidebar_item:hover {
+    display: flex;
+    flex-direction: column-reverse;
+    font-size: 10px;
 }
